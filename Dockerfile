@@ -5,9 +5,9 @@ WORKDIR /src/app/
 RUN set -eux; apk add --no-cache ca-certificates=20230506-r0 build-base=0.5-r3 git=2.40.1-r0 linux-headers=6.3-r0
 RUN go mod download
 RUN git clone https://github.com/cosmos/gaia.git
-RUN git checkout main
 
 WORKDIR /src/app/gaia
+RUN git checkout main
 
 RUN CGO_ENABLED=0 make build
 RUN go install github.com/MinseokOh/toml-cli@latest
