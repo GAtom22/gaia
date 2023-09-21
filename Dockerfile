@@ -4,7 +4,10 @@ WORKDIR /src/app/
 
 RUN set -eux; apk add --no-cache ca-certificates=20230506-r0 build-base=0.5-r3 git=2.40.1-r0 linux-headers=6.3-r0
 
-RUN git clone -b v12.0.0 --single-branch https://github.com/cosmos/gaia.git
+# update here the version you want to build 
+ARG VERSION=v12.0.0
+
+RUN git clone -b ${VERSION} --single-branch https://github.com/cosmos/gaia.git
 WORKDIR /src/app/gaia
 
 RUN CGO_ENABLED=0 make build
